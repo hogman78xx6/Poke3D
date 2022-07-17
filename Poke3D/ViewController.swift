@@ -64,6 +64,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         var sceneImage = ""
         
+        DispatchQueue.main.async {
+        
         if let imageAnchor = anchor as? ARImageAnchor {
             
             print(imageAnchor.referenceImage.name!)
@@ -98,10 +100,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 
             }
             
+        }
+            
             
         }
-        
-        
         
         
         return node
