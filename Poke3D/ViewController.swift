@@ -30,9 +30,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
+        // Create a session configuration to track and recognize
+        // a specific set of images
         let configuration = ARImageTrackingConfiguration()
         
+        // specify the images to track
         // Bundle.main is the current file or project we are in
         if let imageToTrack = ARReferenceImage.referenceImages(inGroupNamed: "Pokemon Cards", bundle: Bundle.main) {
             
@@ -44,6 +46,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
 
         // Run the view's session
+        // will triggr the rendere delagate func to execute
         sceneView.session.run(configuration)
     }
     
@@ -64,8 +67,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         var sceneImage = ""
         
+        // create a new thread execution for each scene created
         DispatchQueue.main.async {
-        
+            
+        // place a 2D plane on the recognized image and then
+        // and then place a 3D model scene on the created plane
+        // that corresponds to the recognized image
         if let imageAnchor = anchor as? ARImageAnchor {
             
             print(imageAnchor.referenceImage.name!)
@@ -105,11 +112,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
         }
         
-        
         return node
         
-        
     }
-
     
 }
